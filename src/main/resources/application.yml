@@ -1,0 +1,17 @@
+spring:
+  kafka:
+#    security:
+#      protocol: "SSL"
+#      ssl:
+#        key-store-location: "src/client.jks"
+#        trust-store-location: "src/client.pem"
+
+#    consumer:
+#      bootstrap-servers: aricuat.anp:9094
+#      group-id: spring-group
+#      auto-offset-reset: earliest
+
+#    producer:
+#      bootstrap-servers: aricuat.anp
+#      key-serializer: org.apache.kafka.common.serialization.StringDeserializer
+#      value-serializer: org.apache.kafka.common.serialization.StringDeserializer

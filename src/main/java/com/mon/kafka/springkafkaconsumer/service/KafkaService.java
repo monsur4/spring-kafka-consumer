@@ -1,13 +1,19 @@
 package com.mon.kafka.springkafkaconsumer.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.tomcat.util.json.JSONParser;
 import org.apache.tomcat.util.json.ParseException;
 import org.bson.json.JsonObject;
+import org.json.JSONObject;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.annotation.PartitionOffset;
 import org.springframework.kafka.annotation.TopicPartition;
 import org.springframework.messaging.Message;
 import org.springframework.stereotype.Service;
+
+import java.util.Map;
 
 @Service
 public class KafkaService {
@@ -18,10 +24,9 @@ public class KafkaService {
             })
             /*topics="CaseMgmtOut", groupId = "spring-group-2"*/)
     public void publish(String message/*, Message<String> str*/) throws ParseException {
-//        JSONParser jsonParser = new JSONParser(message);
-//        JsonObject jsonObject = new JsonObject(message);
-//        jsonObject.
-//        Object parse = jsonParser.parse();
-        System.out.println("This is the new message: " + message /*+ "\n\n\nThis is the str: " + str*/);
+        JSONObject jsonObject = new JSONObject(message);
+        if(jsonObject.get("type").equals("CLOSE-CASE")){
+            System.out.println("caseIdentifiers for all closed cases: " + jsonObject.get("caseIdentifier"));
+        }
     }
 }
